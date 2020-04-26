@@ -3,8 +3,12 @@ compression: maximum
 productName: Simple Twitch Desktop
 artifactName: simple-twitch-desktop ${version}.${ext}
 asar: true
+
 files:
     - src/**/*
+
+extraFiles:
+    - LICENSE
 
 win:
     target:

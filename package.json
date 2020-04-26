@@ -1,7 +1,7 @@
 {
     "name": "simple-twitch-desktop",
     "description": "A lightweight alternative to the official twitch desktop app.",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "main": "src/main.js",
     "scripts": {
         "start": "electron .",

@@ -1,0 +1,16 @@
+# IDE
+.vs
+.idea
+/**/.vs
+/**/.idea
+
+# Node
+/**/node_modules
+
+# App
+/dist
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

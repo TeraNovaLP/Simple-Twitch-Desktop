@@ -1,0 +1,23 @@
+{
+    "name": "simple-twitch-desktop",
+    "description": "A lightweight alternative to the official twitch desktop app.",
+    "version": "1.0.0",
+    "main": "src/main.js",
+    "scripts": {
+        "start": "electron .",
+        "pack": "electron-builder"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/TeraNovaLP/Simple-Twitch-Desktop"
+    },
+    "author": "TeraNovaLP",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "electron-devtools-installer": "^3.0.0"
+    },
+    "devDependencies": {
+        "electron": "^8.2.3",
+        "electron-builder": "^22.5.1"
+    }
+}

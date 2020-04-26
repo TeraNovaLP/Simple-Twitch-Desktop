@@ -1,0 +1,17 @@
+appId: teranovalp.simple-twitch-desktop
+compression: maximum
+productName: Simple Twitch Desktop
+artifactName: simple-twitch-desktop ${version}.${ext}
+asar: true
+files:
+    - src/**/*
+
+win:
+    target:
+        - nsis
+        - zip
+
+nsis:
+    oneClick: false
+    allowToChangeInstallationDirectory: true
+    license: LICENSE

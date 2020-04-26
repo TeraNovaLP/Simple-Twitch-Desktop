@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require("electron");
 const { default: installExtension } = require("electron-devtools-installer");
+const shell = require("electron").shell;
 
 let window;
 
@@ -21,6 +22,14 @@ function createWindow() {
 
     window.setMenuBarVisibility = false;
     window.maximize();
+
+    // Open external links in default browser.
+    window.webContents.on("did-attach-webview", (e, webContents) => {
+        webContents.on("new-window", (e, url) => {
+            e.preventDefault();
+            shell.openExternal(url);
+        });
+    });
 }
 
 function installExtensions() {

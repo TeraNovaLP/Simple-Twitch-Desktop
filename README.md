@@ -4,21 +4,28 @@ A lightweight alternative to the official twitch desktop app that has integrated
 
 **This app is only meant for watching streams and does not provide integration for the game library.**
 
-**Before you can execute this commands, you must have Node.js installed!**
+## Additional options
+With the `Alt` key the menu bar can be made visible at any time. There you can find options like reload the site or go forward and back.
 
-## Setup
+---
+
+## Development
+
+**Before you can execute any of these commands, you must have Node.js installed!**
+
+### Setup
 Run the following command in the root directory of the project to install all dependencies:
 ```
 npm install
 ```
 
-## Start app locally
+### Start app locally
 Run the following command in the root directory of the project to start the app locally:
 ```
 npm start
 ```
 
-## Pack executables
+### Pack executables
 Run the following command in the root directory of the project to start the executable packaging:
 ```
 npm run pack

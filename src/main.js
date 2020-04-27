@@ -1,8 +1,9 @@
-const { app, BrowserWindow } = require("electron");
+const { app, dialog, Menu, BrowserWindow } = require("electron");
 const { default: installExtension } = require("electron-devtools-installer");
 const shell = require("electron").shell;
 
 let window;
+let twitchFrameWebContents;
 
 function createWindow() {
     window = new BrowserWindow({
@@ -20,16 +21,60 @@ function createWindow() {
         }
     });
 
-    window.setMenuBarVisibility = false;
     window.maximize();
 
-    // Open external links in default browser.
     window.webContents.on("did-attach-webview", (e, webContents) => {
+        twitchFrameWebContents = webContents;
+
+        // Open external links in default browser.
         webContents.on("new-window", (e, url) => {
             e.preventDefault();
             shell.openExternal(url);
         });
     });
+
+    overrideMenu();
+}
+
+function overrideMenu() {
+    const template = [
+        {
+            label: "View",
+            submenu: [
+                {
+                    label: "Go forward",
+                    click() { twitchFrameWebContents.goForward() }
+                },
+                {
+                    label: "Go back",
+                    click() { twitchFrameWebContents.goBack() }
+                },
+                {
+                    label: "Refresh",
+                    click() { twitchFrameWebContents.reload() }
+                }
+            ]
+        },
+        {
+            label: "Help",
+            submenu: [
+                {
+                    label: "Toggle Twitch Frame Developer Tools",
+                    click() { twitchFrameWebContents.toggleDevTools() }
+                },
+                {
+                    label: "Toggle Main Window Developer Tools",
+                    click() { window.toggleDevTools() }
+                },
+                {
+                    label: "About",
+                    click() { dialog.showMessageBox(window, { title: "About Simple Twitch Desktop", message: "Simple Twitch Desktop", detail: `Version: ${app.getVersion()}` }) }
+                }
+            ]
+        }
+    ]
+
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
 function installExtensions() {

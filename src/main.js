@@ -31,6 +31,14 @@ function createWindow() {
             e.preventDefault();
             shell.openExternal(url);
         });
+
+        // Open external URLs that don't target blank in the default browser.
+        webContents.on("will-navigate", (ev, url) => {
+            if (!url.includes("https://www.twitch.tv")) {
+                ev.preventDefault();
+                shell.openExternal(url);
+            }
+        });
     });
 
     overrideMenu();

@@ -28,7 +28,7 @@ function createWindow() {
         autoHideMenuBar: true,
         webPreferences: {
             nodeIntegration: false,
-            contextIsolation: true,
+            contextIsolation: false,
             sandbox: true,
             webviewTag: true,
             autoplayPolicy: "user-gesture-required"
@@ -36,6 +36,19 @@ function createWindow() {
     });
 
     window.maximize();
+
+    window.webContents.on("will-attach-webview", (e, webPreferences, params) => {
+        delete webPreferences.preload;
+
+        webPreferences.nodeIntegration = false;
+        webPreferences.spellcheck = true;
+        webPreferences.sandbox = true;
+
+        // Verify URL
+        if (!params.src.startsWith('https://www.twitch.tv')) {
+            e.preventDefault();
+        }
+    });
 
     window.webContents.on("did-attach-webview", (e, webContents) => {
         twitchFrameWebContents = webContents;
